@@ -24,9 +24,8 @@ STEP 8: Use heatmap method of representation to show relationships between two v
 
 ## CODING AND OUTPUT
 
-    # ----------------------------------------
 # Step 1: Import the Required Packages
-# ----------------------------------------
+
 import pandas as pd
 import numpy as np
 import seaborn as sns
@@ -34,7 +33,7 @@ import matplotlib.pyplot as plt
 
 # ----------------------------------------
 # Step 2: Load the Dataset
-# ----------------------------------------
+
 # Replace 'your_data.csv' with your actual dataset filename
 data = pd.read_csv('titanic_dataset.csv')
 data.head()
@@ -42,7 +41,7 @@ print("Dataset loaded successfully.\n")
 
 # ----------------------------------------
 # Step 3: Data Cleansing - Replace Null Values
-# ----------------------------------------
+
 # Use mean for numeric columns and mode for categorical columns
 for column in data.columns:
     if data[column].dtype == 'object':
@@ -54,7 +53,7 @@ print("Missing values handled.\n")
 
 # ----------------------------------------
 # Step 4: Boxplot to Analyze Outliers (Fare)
-# ----------------------------------------
+ 
 plt.figure(figsize=(6,4))
 sns.boxplot(x=data['Fare'])
 plt.title("Boxplot - Fare")
@@ -63,7 +62,7 @@ plt.show()
 
 # ----------------------------------------
 # Step 5: Remove Outliers Using IQR Method
-# ----------------------------------------
+ 
 def remove_outliers_iqr(df, column):
     Q1 = df[column].quantile(0.25)
     Q3 = df[column].quantile(0.75)
@@ -78,7 +77,7 @@ print("Outliers removed using IQR method.\n")
 
 # ----------------------------------------
 # Step 6: Countplot for Categorical Data
-# ----------------------------------------
+ 
 plt.figure(figsize=(7,4))
 sns.countplot(x='SibSp', data=data)
 plt.title("Countplot - SibSp Distribution")
@@ -87,7 +86,7 @@ plt.show()
 
 # ----------------------------------------
 # Step 7: Displot for Univariate Distribution (Age)
-# ----------------------------------------
+ 
 sns.displot(data['Age'], kde=True, height=4, aspect=1.5)
 plt.title("Displot - Age Distribution")
 plt.xlabel("Age")
@@ -96,14 +95,14 @@ plt.show()
 
 # ----------------------------------------
 # Step 8: Cross Tabulation
-# ----------------------------------------
+ 
 crosstab_result = pd.crosstab(data['Sex'], data['SibSp'])
 print("\nCross Tabulation Result (Sex vs SibSp):\n")
 print(crosstab_result)
 
 # ----------------------------------------
 # Step 9: Heatmap to Show Correlation
-# ----------------------------------------
+ 
 plt.figure(figsize=(8,6))
 correlation_matrix = data.select_dtypes(include=np.number).corr()
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm')
